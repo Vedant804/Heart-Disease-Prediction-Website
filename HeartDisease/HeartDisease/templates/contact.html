@@ -1,0 +1,212 @@
+<html>
+<head>
+    {% load static %}
+    <title>
+        contact us
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css'} ">
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'poppins',sans-serif;
+}
+body{
+background: #222831;
+font-size: 14px;
+}
+.container{
+    width: 80%;
+    margin: 50px auto;
+}
+h1{
+    color: white;
+}
+p{
+    color: white;
+}
+.contact-box{
+    background-color: white;
+    display: flex;
+}
+.contact-left{
+    flex-basis: 60%;
+    padding: 40px 60px;
+}
+.contact-right{
+    flex-basis: 40%;
+    padding: 40px;
+    background: #222831;
+    color: #fff;
+}
+h1{
+    margin-bottom: 10px;
+}
+.container p{
+    margin-bottom: 40px;
+}
+.input-row{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.input-row .input-group{
+    flex-basis: 45%;
+}
+input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    padding-bottom: 5px;
+}
+textarea{
+    width: 100%;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+label{
+    margin-bottom: 6px;
+    display: block;
+    color: #1c00b5;
+}
+button{
+    background: #1c00b5;
+    width: 100px;
+    border: none;
+    outline: none;
+    color: #fff;
+    height: 35px;
+    border-radius: 30px;
+    margin-top: 20px;
+    box-shadow: 0px 5px 15px 0px rgba(28,0,181,0.3);
+}
+.contact-left h3{
+    color: #1c00b5;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.contact-right h3{
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+a{
+    color: #fff;
+}
+table{
+    color: #fff;
+}
+tr td:first-child{
+    padding-right:20px;
+}
+tr td{
+    padding-top:20px;
+}
+a {
+            color: rgb(141, 228, 141); /* Set the default color of the link */
+            text-decoration: none; /* Remove underline by default */
+        }
+
+        /* Define the hover effect */
+        a:hover {
+            color: rgb(120, 106, 226); /* Change the color of the link on hover */
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact us</h1>
+        <p>We would love to respond your queries </p>
+        <div class="contact-box">
+            <div class="contact-left">
+                <h3>Send your request</h3>
+                <form onsubmit="sendEmail();reset();return false;">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Enter your name" id="fullname">
+                        </div>
+                        <div class="input-group">
+                            <label>Phone</label>
+                            <input type="text" placeholder="Enter your mobile no" id="number" >
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Enter your email" id="email">
+                        </div>
+                        <div class="input-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Enter the subject" id="subject" >
+                        </div>
+                    </div>
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Enter your message " id="message"></textarea>
+                    <button type="submit">SEND</button>
+                </form>
+                <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+            const form=document.querySelector('form');
+const fullname=document.getElementById("fullname");
+const email=document.getElementById("email");
+const number=document.getElementById("number");
+const subject=document.getElementById("subject");
+const message=document.getElementById("message");
+
+function sendEmail(){
+    const bodyMessage=`Full Name: ${fullname.value}<br> Email: ${email.value}<br> Mobile No: ${number.value}<br>Subject: ${subject.value}<br>Message:${message.value}<br>`;
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "joshivedant1503@gmail.com",
+        Password : "39CF786A270D12128CC4A971FD365F87D681",
+        To : "joshivedant762@gmail.com",
+        From : "joshivedant1503@gmail.com",
+        Subject : subject.value,
+        Body : bodyMessage
+}).then(
+message => alert(message)
+);
+}
+        </script>
+            </div>
+            <div class="contact-right">
+                <h3>Reach us</h3>
+                <table>
+                    <tr>
+                        <td>Email:</td>
+                        <td><a href="mailto:joshivedant1503@gmail.com">joshivedant1503@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <td>Hospital's location:</td>
+                        <td><a href="http://maps.google.com/maps?q=Apollo+Hospital">Apollo Hospital</a></td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><a href="tel: +91 8080044884">+91 8080044884</a></td>
+                    </tr>
+                    <tr>
+                        <td>Hospital's website</td>
+                        <td><a href="https://www.apollohospitals.com/hospital/mumbai/">apollohospitals.com<td>
+                    </tr>
+                    <tr>
+                        <td>Hospital's Address</td>
+                        <td>Plot #13, Parsik Hill Road, Off Uran Road, Sector – 23, CBD Belapur, Opp. Nerul Wonders Park
+                            Navi Mumbai – 400 614.</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+    {% block body %}
+    {% endblock %}
+</html>
+
+

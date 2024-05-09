@@ -1,0 +1,114 @@
+<html>
+    <head>
+        {% load static %}
+        <title>Prediction Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css'} ">
+         <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: white;
+            }
+            button{
+                background-color: #4CAF50;
+                width: 25%;
+                padding: 15px;
+                color: black;
+                border: none;
+                float: center;
+                font-size: 15px;
+            }
+            label{
+                font-size: 20px;
+            }
+            form{
+                border: 3px solid #f1f1f1;
+            }
+            input[type=email],input[type=text]{
+                width: 50%;
+                font-size: 15px;
+                margin: 8px 0px;
+                padding: 12px 20px;
+                display: inline-block;
+                border: 2px solid green;
+                box-sizing: border-box;
+            }
+            input[type=radio]{
+                height: 18px;
+                width: 18px;
+            }
+            button:hover{
+                opacity:0.7;
+
+            }
+
+        </style>
+    </head>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container">
+    <a class="navbar-brand" href="#">Heart Disease Prediction System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myMenu">
+            <ul class="navbar-nav text-center ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a><li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}"><i class="far fa-address-card"></i> About</a><li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}"><i class="fas fa-phone-square"></i> Contact</a><li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-power-off"></i> Logout</a></li>
+            </ul>
+        </div>
+            </div>
+    </nav>
+
+     <body>
+      <br><center><h1>Prediction Page</h1></center><br>
+      <form method="POST">
+            {% csrf_token %}
+            <center><div class="container">
+                <label for='n1'></label>
+		        <input type='text' placeholder="Enter your age" name='age' required><br>
+		        <label for='n2'></label>
+		        <input type='text' placeholder="Enter 1 for male or 0 for female" name='sex' required><br>
+                <label for='n3'></label>
+		        <input type='text' placeholder="Chest pain value (From 0 to 3)" name='cp' required><br>
+                <label for='n4'></label>
+		        <input type='text' placeholder="Resting blood pressure value (From 94 to 200 in mm Hg )" name='trestbps'><br>
+            	<label for='n5'></label>
+            	<input type="text" placeholder="Serum cholestoral value in (From 126 to 564 in mg/dl)" name="chol" required><br>
+                <label for='n6'></label>
+            	<input type="text" placeholder="Fasting blood sugar value is 120 mg/dl (Enter 1 for true or 0 for false)" name="fbs" required><br>
+                <label for='n7'></label>
+            	<input type="text" placeholder="Resting electrocardiographic results(From 0 to 2)" name="restecg" required><br>
+                <label for='n8'></label>
+            	<input type="text" placeholder="Maximum heart rate achieved (From 71 to 202)" name="thalach" required><br>
+                <label for='n9'></label>
+            	<input type="text" placeholder="Do you have exercise induced angina(Enter 1 for true or 0 for false)" name="exang" required><br>
+                <label for='n10'></label>
+            	<input type="text" placeholder="Enter the value for exercise-induced ST depression (0-6.2)" name="oldpeak" required><br>
+                <label for='n11'></label>
+            	<input type="text" placeholder="Enter value for the slope of the peak exercise ST segment(0-2)" name="slope" required><br>
+                <label for='n12'></label>
+            	<input type="text" placeholder="Major vessels value colored by flourosopy (From 0 to 2)" name="ca" required><br>
+                <label for='n13'></label>
+            	<input type="text" placeholder="Do you have thalassemia(1 = normal; 2 = fixed defect; 3 = reversable defect)" name="thal" required><br>
+            	<button type="submit"><b>Submit</b></button><br>
+
+        Result:{{ result2 }}
+
+            </div></center>
+        </form>
+
+    </body>
+
+    {% block body %}
+    {% endblock %}
+
+
+</html>
