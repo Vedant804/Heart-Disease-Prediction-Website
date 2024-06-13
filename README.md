@@ -37,6 +37,7 @@ The web application features a Contact Us form, allowing users to reach out to t
 - Pycharm
 - MySQL client server
 - Chrome
+- Jupyter Notebook 
 
 
 ## Note
