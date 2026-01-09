@@ -1,71 +1,159 @@
-<html>
-    <head>
-        <title>Login Page</title>
-        <style>
-            body{
-                font-family: Arial, Helvetica, sans-serif;
-                background-color: white;
-            }
-            button{
-                background-color: #4CAF50;
-                width: 10%;
-                padding: 15px;
-                color: black;
-                border: none;
-                float: center;
-                font-size: 15px;
-            }
-            label{
-                font-size: 20px;
-            }
-            form{
-                border: 3px solid #f1f1f1;
-            }
-            input[type=email],input[type=password]{
-                width: 50%;
-                font-size: 15px;
-                margin: 8px 0px;
-                padding: 12px 20px;
-                display: inline-block;
-                border: 2px solid green;
-                box-sizing: border-box;
-            }
-            button:hover{
-                opacity:0.7;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Shared design variables for consistency */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-hover: #45a049;
+            --bg-color: #2e2d3c;
+            --text-color: #333;
+            --white: #ffffff;
+            --border-color: #ddd;
+        }
 
-            }
-            .container{
-                padding: 50px;
-                background-color: white;
-            }
-            .imgcontainer {
-                text-align: center;
-                margin: 14px 0 2px 0;
-            }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
 
-            img.avatar {
-                width: 20%;
-                border-radius: 50%;
-            }
-        </style>
-    </head>
-    <body>
-        <br>
-        <center><h1>Login Form</h1></center>
+        .login-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .imgcontainer {
+            margin-bottom: 25px;
+        }
+
+        img.avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            padding: 3px;
+            background: white;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input[type=email], 
+        input[type=password] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease, transform 0.1s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1>Login</h1>
+        
+        <div class="imgcontainer">
+            {% load static %}
+            <img src="{% static 'avatar_img6.jpg' %}" alt="Avatar" class="avatar">
+        </div>
+
         <form action="#" method="post">
             {% csrf_token %}
-            {% load static %}
-            <center><div class="container">
-                <div class="imgcontainer">
-                    <img src="{% static 'avatar_img6.jpg' %}" alt="Avatar" class="avatar">
-                </div>
-                <label for ='email'><b>UserEmail :  </b></label>
-                <input type="email" placeholder="Enter email" name="email" float="right"  required><br>
-                <label for='password'><b>Password : </b></label>
-                <input type="password" placeholder="Enter Password" name="password" required><br>
-                <button type="submit"><b>Login</b></button><br><br>
-                Don't have an account <a href="http://localhost:8000/signup/"> register </a>
-            </div></center>
+            
+            <div class="input-group">
+                <label for="email">User Email</label>
+                <input type="email" placeholder="Enter your email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+
+            <div class="footer-text">
+                Don't have an account? <a href="/signup/">Register now</a>
+            </div>
         </form>
-    </body>
+    </div>
+
+</body>
 </html>
